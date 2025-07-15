@@ -26,10 +26,19 @@ import androidx.compose.ui.unit.sp
 import com.example.taskmanager.R
 import com.example.taskmanager.components.AppBarView
 import com.example.taskmanager.components.CustomHomeTopBar
-import com.example.taskmanager.data.Wish
+import com.example.taskmanager.data.DummyTask
+import com.example.taskmanager.data.Task
+import androidx.compose.foundation.lazy.items
+import androidx.navigation.NavController
+import com.example.taskmanager.Screen
+import com.example.taskmanager.data.TasksViewModel
+
 
 @Composable
-fun HomeView() {
+fun HomeView(
+    navController: NavController,
+    viewModel: TasksViewModel
+) {
     Scaffold(
         topBar = {
             CustomHomeTopBar(
@@ -41,7 +50,9 @@ fun HomeView() {
                 modifier = Modifier.padding(20.dp),
                 contentColor = Color.White,
                 containerColor = colorResource(id = R.color.app_bar_color),
-                onClick = {}
+                onClick = {
+                    navController.navigate((Screen.AddEditScreen.route))
+                }
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -54,12 +65,22 @@ fun HomeView() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
-        ) { }
+        ) {
+            items(DummyTask.taskList) { task ->
+                TaskItem(
+                    task = task,
+                    onClick = {
+
+                    }
+                )
+            }
+        }
     }
 }
 
+
 @Composable
-fun WishItem(wish: Wish, onClick: () -> Unit) {
+fun TaskItem(task: Task, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -72,12 +93,12 @@ fun WishItem(wish: Wish, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             Text(
-                text = wish.title,
+                text = task.title,
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 17.sp
             )
             Text(
-                text = wish.description,
+                text = task.description,
                 fontSize = 15.sp
             )
         }
