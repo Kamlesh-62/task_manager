@@ -4,13 +4,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.Group
 import androidx.lifecycle.viewModelScope
+import com.example.taskmanager.Graph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class TasksViewModel(
-    private val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository = Graph.taskRepository
 ) : ViewModel() {
     var taskTitleState by mutableStateOf("")
     var taskDescription by mutableStateOf("")
@@ -55,5 +57,4 @@ class TasksViewModel(
             taskRepository.deleteTask(task = task)
         }
     }
-
 }

@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
     version = 1,
     exportSchema = false
 )
+
 abstract class TaskDataBase: RoomDatabase() {
-    abstract fun taksManagerDao(): TaksManagerDao
-    abstract fun taskManagerDao(): TaksManagerDao
+    abstract fun taskManagerDao(): TaskManagerDao
 }

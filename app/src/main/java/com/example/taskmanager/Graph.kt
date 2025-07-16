@@ -11,6 +11,7 @@ object Graph {
     val taskRepository by lazy{
         TaskRepository(taskManagerDao = dataBase.taskManagerDao())
     }
+
     fun provide(context: Context){
         dataBase = Room.databaseBuilder(context, TaskDataBase::class.java, "taskmanager.db").build()
     }

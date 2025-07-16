@@ -2,7 +2,7 @@ package com.example.taskmanager.data
 
 import kotlinx.coroutines.flow.Flow
 
-class TaskRepository (private val taskManagerDao: TaksManagerDao) {
+class TaskRepository (private val taskManagerDao: TaskManagerDao) {
 
     suspend fun addATask(task: Task) {
         taskManagerDao.addTask(task)
